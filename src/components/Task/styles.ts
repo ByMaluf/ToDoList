@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     gap: 8,
+    width: "100%",
+    textAlign: "center",
+    justifyContent: "space-between",
   },
   checkbox: {
     borderRadius: 12,
@@ -21,6 +24,9 @@ export const styles = StyleSheet.create({
     width: 24,
   },
   text: {
-    flex: 3,
+    color: "#F2F2F2",
+    fontSize: 14,
+    fontFamily: "InterRegular",
+    lineHeight: 140,
   },
 });
