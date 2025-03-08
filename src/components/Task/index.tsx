@@ -15,7 +15,12 @@ export default function Task({ textTask }: Props) {
       // onValueChange={setChecked}
       // color={isChecked ? '#4630EB' : undefined}
       />
-      <Text style={styles.text}>{textTask}</Text>
+      <Text
+        style={styles.text}
+        numberOfLines={2}
+      >
+        {textTask}
+      </Text>
       <Image source={require('../../../assets/trash.png')} />
     </View>
   );

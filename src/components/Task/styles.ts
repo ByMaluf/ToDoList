@@ -20,13 +20,15 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: "#4EA8DE",
     borderWidth: 1,
-    height: 24,
-    width: 24,
+    height: 17,
+    width: 17,
   },
   text: {
     color: "#F2F2F2",
     fontSize: 14,
     fontFamily: "InterRegular",
-    lineHeight: 140,
+    lineHeight: 20,
+    flex: 1,
+    flexShrink: 1,
   },
 });

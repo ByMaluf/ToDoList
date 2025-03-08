@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#1A1A1A",
+  gradient: {
+    flex: 1,
+  },
+  containerForm: {
     paddingLeft: 24,
     paddingRight: 24,
     alignItems: "center",
     width: "100%",
-    flex: 1,
   },
   logo: {
     marginTop: 70,
