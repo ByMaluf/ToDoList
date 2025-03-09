@@ -10,9 +10,9 @@ export default function Home() {
   const [listTask, setListTask] = useState<string[]>([]);
   const [text, setText] = useState('');
   const [InfoTasks, setInfoTasks] = useState({ create: 0, completed: 0 });
-  const [checkbox, setCheckBox] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
-  function handleAddTask() {
+  function HandleAddTask() {
     console.log('texto antes de adicionar: ', text)
     if (validateTask(text, listTask)) {
       setListTask(prevState => ([text.trim(), ...prevState]));
@@ -33,10 +33,18 @@ export default function Home() {
       style: 'cancel'
     }];
     onRemoveRegister('REMOVER TAREFA', 'Deseja realmente apagar essa tarefa?', buttons);
-  };
+  }
 
   useEffect(() => {
-    setInfoTasks({ create: listTask.length, completed: 0 });
+    function HandleIsChecked() {
+    }
+    HandleIsChecked()
+  }, [isChecked])
+
+  { console.log(isChecked) }
+
+  useEffect(() => {
+    setInfoTasks({ create: listTask.length, completed: 0 })
   }, [listTask]);
 
   { console.log("Lista de tarefas renderizada:", listTask) }
@@ -48,7 +56,6 @@ export default function Home() {
       dither={false}
     >
       <View style={styles.containerForm}>
-
         <Image source={require('../../../assets/Logo.png')} style={styles.logo} />
 
         <View style={styles.form}>
@@ -60,7 +67,7 @@ export default function Home() {
             onChangeText={setText}
           />
 
-          <TouchableOpacity style={styles.button} onPress={handleAddTask}>
+          <TouchableOpacity style={styles.button} onPress={HandleAddTask}>
             <Image source={require('../../../assets/plus.png')} />
           </TouchableOpacity>
         </View>
@@ -80,7 +87,7 @@ export default function Home() {
         <FlatList
           data={listTask}
           keyExtractor={(item, index) => String(index)}
-          renderItem={({ item }) => <Task textTask={item} onRemove={() => HandleRemoveTask(item)} />}
+          renderItem={({ item }) => <Task textTask={item} isChecked={isChecked} setIsChecked={setIsChecked} onRemove={() => HandleRemoveTask(item)} />}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (
             <View style={styles.containerEmpty}>
