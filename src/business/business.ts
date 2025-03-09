@@ -1,13 +1,18 @@
 import { Alert } from "react-native";
 
-export default function validateTask(
-  text: string,
-  listTask: string[]
-): boolean {
+export function validateTask(text: string, listTask: string[]): boolean {
   const modifiedText = text.trim();
   if (!emptyText(modifiedText)) return false;
   if (!equalsTask(modifiedText, listTask)) return false;
   return true;
+}
+
+export function onRemoveRegister(
+  title: string,
+  message: string,
+  buttons: object[]
+) {
+  Alert.alert(`${title}`, `${message}`, buttons);
 }
 
 function emptyText(text: string): boolean {

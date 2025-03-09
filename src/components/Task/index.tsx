@@ -1,12 +1,13 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import Checkbox from 'expo-checkbox';
 
 type Props = {
   textTask: string;
+  onRemove: () => void;
 }
 
-export default function Task({ textTask }: Props) {
+export default function Task({ textTask, onRemove }: Props) {
   return (
     <View style={styles.taskCard}>
       <Checkbox
@@ -21,7 +22,10 @@ export default function Task({ textTask }: Props) {
       >
         {textTask}
       </Text>
-      <Image source={require('../../../assets/trash.png')} />
+
+      <TouchableOpacity onPress={onRemove}>
+        <Image source={require('../../../assets/trash.png')} />
+      </TouchableOpacity>
     </View>
   );
 }

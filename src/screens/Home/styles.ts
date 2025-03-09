@@ -72,4 +72,13 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     fontWeight: "bold",
   },
+  list: { backgroundColor: "green" },
+  number: {
+    backgroundColor: "#333333",
+    color: "#D9D9D9",
+    padding: 8,
+    borderRadius: 12,
+    fontSize: 12,
+    fontWeight: "bold",
+  },
 });

@@ -3,12 +3,13 @@ import { styles } from './styles';
 import { useEffect, useState } from "react";
 import Task from "../../components/Task";
 import { LinearGradient } from "expo-linear-gradient";
-import validateTask from "../../business/business";
+import { onRemoveRegister, validateTask } from "../../business/business";
 
 export default function Home() {
 
   const [listTask, setListTask] = useState<string[]>([]);
   const [text, setText] = useState('');
+  const [InfoTasks, setInfoTasks] = useState({ create: 0, completed: 0 });
   const [checkbox, setCheckBox] = useState(false);
 
   function handleAddTask() {
@@ -19,6 +20,24 @@ export default function Home() {
     }
     setText('');
   }
+
+  function HandleRemoveTask(text: string) {
+    const buttons = [{
+      text: 'Sim',
+      onPress: () => {
+        setListTask(prevState => prevState.filter(item => item !== text));
+      }
+    },
+    {
+      text: 'Não',
+      style: 'cancel'
+    }];
+    onRemoveRegister('REMOVER TAREFA', 'Deseja realmente apagar essa tarefa?', buttons);
+  };
+
+  useEffect(() => {
+    setInfoTasks({ create: listTask.length, completed: 0 });
+  }, [listTask]);
 
   { console.log("Lista de tarefas renderizada:", listTask) }
 
@@ -47,14 +66,14 @@ export default function Home() {
         </View>
 
         <View style={styles.taskDetails}>
-          <Text style={styles.create}>Criadas</Text>
-          <Text style={styles.check}>Concluídas</Text>
+          <Text style={styles.create}>Criadas <Text style={styles.number}>{InfoTasks.create}</Text> </Text>
+          <Text style={styles.check}>Concluídas <Text style={styles.number}>{InfoTasks.completed}</Text></Text>
         </View>
 
         <FlatList
           data={listTask}
           keyExtractor={(item, index) => String(index)}
-          renderItem={({ item }) => <Task textTask={item} />}
+          renderItem={({ item }) => <Task textTask={item} onRemove={() => HandleRemoveTask(item)} />}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (
             <View style={styles.containerEmpty}>
