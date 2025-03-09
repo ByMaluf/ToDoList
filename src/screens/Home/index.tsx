@@ -65,9 +65,16 @@ export default function Home() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.taskDetails}>
-          <Text style={styles.create}>Criadas <Text style={styles.number}>{InfoTasks.create}</Text> </Text>
-          <Text style={styles.check}>Concluídas <Text style={styles.number}>{InfoTasks.completed}</Text></Text>
+        <View style={styles.containerDetails}>
+          <View style={styles.containerNumber}>
+            <Text style={styles.createText}> Criadas</Text>
+            <Text style={styles.number}>{InfoTasks.create}</Text>
+          </View>
+
+          <View style={styles.containerNumber}>
+            <Text style={styles.check}>Concluídas</Text>
+            <Text style={styles.number}>{InfoTasks.completed}</Text>
+          </View>
         </View>
 
         <FlatList
@@ -84,6 +91,6 @@ export default function Home() {
           )}
         />
       </View >
-    </LinearGradient>
+    </LinearGradient >
   );
 }

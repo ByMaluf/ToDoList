@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
   },
-  taskDetails: {
+  containerDetails: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
@@ -48,11 +48,26 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 20,
   },
-  create: {
+  containerNumber: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 5,
+  },
+  createText: {
     color: "#4EA8DE",
     fontFamily: "InterRegular",
     fontWeight: "bold",
     fontSize: 14,
+  },
+  number: {
+    color: "#D9D9D9",
+    fontSize: 12,
+    fontWeight: "bold",
+    backgroundColor: "#333333",
+    borderRadius: 20,
+    paddingVertical: 2,
+    paddingHorizontal: 8,
   },
   check: {
     color: "#8284FA",
@@ -70,15 +85,6 @@ export const styles = StyleSheet.create({
   },
   textBold: {
     marginTop: 16,
-    fontWeight: "bold",
-  },
-  list: { backgroundColor: "green" },
-  number: {
-    backgroundColor: "#333333",
-    color: "#D9D9D9",
-    padding: 8,
-    borderRadius: 12,
-    fontSize: 12,
     fontWeight: "bold",
   },
 });

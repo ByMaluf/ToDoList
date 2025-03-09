@@ -24,7 +24,11 @@ function emptyText(text: string): boolean {
 }
 
 function equalsTask(text: string, listTask: string[]): boolean {
-  if (listTask.includes(text)) {
+  const textLowerCase = text.toLowerCase();
+  const listTaskLowerCase = listTask.some(
+    (task) => task.toLowerCase() === textLowerCase
+  );
+  if (listTaskLowerCase) {
     Alert.alert("Tarefa Duplicada", "Essa tarefa já foi adicionada!");
     return false;
   }
