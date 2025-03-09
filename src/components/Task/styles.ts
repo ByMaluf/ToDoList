@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: "#F2F2F2",
-    fontSize: 14,
+    fontSize: 17,
     fontFamily: "InterRegular",
     lineHeight: 20,
     flex: 1,

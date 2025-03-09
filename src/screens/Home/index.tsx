@@ -3,6 +3,7 @@ import { styles } from './styles';
 import { useEffect, useState } from "react";
 import Task from "../../components/Task";
 import { LinearGradient } from "expo-linear-gradient";
+import validateTask from "../../business/business";
 
 export default function Home() {
 
@@ -12,12 +13,10 @@ export default function Home() {
 
   function handleAddTask() {
     console.log('texto antes de adicionar: ', text)
-    if (!text) {
-      console.log('texto errado: ', text)
-      Alert.alert('ATENÇÃO', 'Valor no campo requirido inválido!');
-      return;
+    if (validateTask(text, listTask)) {
+      setListTask(prevState => ([text.trim(), ...prevState]));
+      setText('');
     }
-    setListTask(prevState => ([text.trim(), ...prevState]));
     setText('');
   }
 
