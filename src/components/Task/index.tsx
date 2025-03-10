@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "./styles";
+import { styles } from './styles';
 import Checkbox from 'expo-checkbox';
 
 type Props = {
@@ -19,7 +19,7 @@ export default function Task({ textTask, onRemove, isChecked, setIsChecked }: Pr
         color={isChecked ? '#5E60CE' : undefined}
       />
       <Text
-        style={styles.text}
+        style={isChecked ? [styles.text, styles.taskCompleted] : styles.text}
         numberOfLines={2}
       >
         {textTask}

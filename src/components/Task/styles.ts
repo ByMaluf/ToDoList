@@ -17,16 +17,15 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   checkbox: {
-    borderRadius: 12, // 🔥 Mantém a borda arredondada, mas não exagerada
-    borderColor: "#4EA8DE", // 🔥 Cor da borda quando não marcado
-    borderWidth: 2, // 🔥 Deixa a borda mais visível
-    backgroundColor: "transparent", // 🔥 Evita que fique com fundo branco
-    height: 22, // 🔥 Deixa um pouco maior
-    width: 22,
+    borderRadius: 12,
+    borderColor: "#4EA8DE",
+    borderWidth: 2,
+    backgroundColor: "transparent",
+    height: 20,
+    width: 20,
     alignItems: "center",
     justifyContent: "center",
   },
-
   text: {
     color: "#F2F2F2",
     fontSize: 17,
@@ -34,5 +33,9 @@ export const styles = StyleSheet.create({
     lineHeight: 20,
     flex: 1,
     flexShrink: 1,
+  },
+  taskCompleted: {
+    color: "#808080",
+    textDecorationLine: "line-through",
   },
 });
