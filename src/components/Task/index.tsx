@@ -4,9 +4,9 @@ import Checkbox from 'expo-checkbox';
 
 type Props = {
   textTask: string;
-  isChecked: boolean;
+  isChecked: boolean
   onRemove: () => void;
-  setIsChecked: (value: boolean) => void;
+  setIsChecked: () => void;
 }
 
 export default function Task({ textTask, onRemove, isChecked, setIsChecked }: Props) {

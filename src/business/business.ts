@@ -1,6 +1,7 @@
 import { Alert } from "react-native";
+import { Task } from "../screens/Home";
 
-export function validateTask(text: string, listTask: string[]): boolean {
+export function validateTask(text: string, listTask: Task[]): boolean {
   const modifiedText = text.trim();
   if (!emptyText(modifiedText)) return false;
   if (!equalsTask(modifiedText, listTask)) return false;
@@ -23,10 +24,10 @@ function emptyText(text: string): boolean {
   return true;
 }
 
-function equalsTask(text: string, listTask: string[]): boolean {
+function equalsTask(text: string, listTask: Task[]): boolean {
   const textLowerCase = text.toLowerCase();
   const listTaskLowerCase = listTask.some(
-    (task) => task.toLowerCase() === textLowerCase
+    (task) => task.text.toLowerCase() === textLowerCase
   );
   if (listTaskLowerCase) {
     Alert.alert("Tarefa Duplicada", "Essa tarefa já foi adicionada!");

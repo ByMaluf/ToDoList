@@ -5,17 +5,19 @@ import Task from "../../components/Task";
 import { LinearGradient } from "expo-linear-gradient";
 import { onRemoveRegister, validateTask } from "../../business/business";
 
+export type Task = {
+  text: string;
+  isChecked: boolean;
+};
 export default function Home() {
 
-  const [listTask, setListTask] = useState<string[]>([]);
+  const [listTask, setListTask] = useState<Task[]>([]);
   const [text, setText] = useState('');
   const [InfoTasks, setInfoTasks] = useState({ create: 0, completed: 0 });
-  const [isChecked, setIsChecked] = useState(false);
 
   function HandleAddTask() {
-    console.log('texto antes de adicionar: ', text)
     if (validateTask(text, listTask)) {
-      setListTask(prevState => ([text.trim(), ...prevState]));
+      setListTask(prevState => ([{ text, isChecked: false }, ...prevState]));
       setText('');
     }
     setText('');
@@ -25,7 +27,7 @@ export default function Home() {
     const buttons = [{
       text: 'Sim',
       onPress: () => {
-        setListTask(prevState => prevState.filter(item => item !== text));
+        setListTask(prevState => prevState.filter(item => item.text !== text));
       }
     },
     {
@@ -35,19 +37,33 @@ export default function Home() {
     onRemoveRegister('REMOVER TAREFA', 'Deseja realmente apagar essa tarefa?', buttons);
   }
 
-  useEffect(() => {
-    function HandleIsChecked() {
+  function handleTaskChecked(taskText: string) {
+    setListTask(prevTasks =>
+      prevTasks.map(task =>
+        task.text === taskText ? { ...task, isChecked: !task.isChecked } : task
+      )
+    );
+  }
+
+  function handleClearTasks() {
+    Alert.alert('LIMPAR TUDO', 'Tem certeza que deseja apagar suas tarefas?', [{
+      text: 'Sim',
+      onPress: () => {
+        setListTask([]);
+        setText('');
+      }
+    },
+    {
+      text: 'Não',
+      style: 'cancel'
     }
-    HandleIsChecked()
-  }, [isChecked])
-
-  { console.log(isChecked) }
+    ])
+  }
 
   useEffect(() => {
-    setInfoTasks({ create: listTask.length, completed: 0 })
+    const isChecked = listTask.filter((item) => item.isChecked)
+    setInfoTasks({ create: listTask.length, completed: isChecked.length })
   }, [listTask]);
-
-  { console.log("Lista de tarefas renderizada:", listTask) }
 
   return (
     <LinearGradient
@@ -78,6 +94,12 @@ export default function Home() {
             <Text style={styles.number}>{InfoTasks.create}</Text>
           </View>
 
+          <View>
+            <TouchableOpacity style={styles.containerClearAll} onPress={handleClearTasks}>
+              <Text style={styles.clearAll}>Limpar Tudo</Text>
+            </TouchableOpacity>
+          </View>
+
           <View style={styles.containerNumber}>
             <Text style={styles.check}>Concluídas</Text>
             <Text style={styles.number}>{InfoTasks.completed}</Text>
@@ -87,7 +109,7 @@ export default function Home() {
         <FlatList
           data={listTask}
           keyExtractor={(item, index) => String(index)}
-          renderItem={({ item }) => <Task textTask={item} isChecked={isChecked} setIsChecked={setIsChecked} onRemove={() => HandleRemoveTask(item)} />}
+          renderItem={({ item }) => <Task textTask={item.text} isChecked={item.isChecked} setIsChecked={() => handleTaskChecked(item.text)} onRemove={() => HandleRemoveTask(item.text)} />}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={() => (
             <View style={styles.containerEmpty}>

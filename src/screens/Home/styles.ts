@@ -75,6 +75,17 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 14,
   },
+  containerClearAll: {
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    backgroundColor: "#341933",
+    borderColor: "#333333",
+    borderWidth: 0.8,
+    borderRadius: 6,
+  },
+  clearAll: {
+    color: "#FFF",
+  },
   containerEmpty: {
     alignItems: "center",
     marginTop: 58,
